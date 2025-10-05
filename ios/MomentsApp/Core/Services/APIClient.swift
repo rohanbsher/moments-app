@@ -30,7 +30,7 @@ class APIClient {
         config: VideoConfig,
         onProgress: @escaping (Double) -> Void
     ) async throws -> String {
-        let endpoint = "\(baseURL)/api/v1/upload/video"
+        let endpoint = "\(baseURL)/api/v1/upload"
 
         // Create multipart form data
         let boundary = "Boundary-\(UUID().uuidString)"

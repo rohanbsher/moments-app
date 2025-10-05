@@ -15,9 +15,8 @@ struct VideoConfig {
     // Computed property for form data
     var formData: [String: String] {
         return [
-            "duration": String(targetDuration),
-            "min_segment": String(minSegmentDuration),
-            "max_segment": String(maxSegmentDuration)
+            "target_duration": String(targetDuration),
+            "quality": "high"
         ]
     }
 }
