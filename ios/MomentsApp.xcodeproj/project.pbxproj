@@ -1,0 +1,192 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D9F9C6BB81AE42079DA0608C /* Core/Models/Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B78EFE8789C4EDAA6770C03 /* Core/Models/Job.swift */; };
+		9B2A816DF75B403C89215177 /* Core/Models/VideoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBDF8E51B5C45438AB3C31E /* Core/Models/VideoConfig.swift */; };
+		EC8564F225D64D63B13B8CA9 /* Core/Services/APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887FE35A553049679A68C2FB /* Core/Services/APIClient.swift */; };
+		054B3A9C722E4F2694233AB0 /* Features/Home/Views/HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E2192D134D98A52C7107 /* Features/Home/Views/HomeView.swift */; };
+		2A74C2C480724166BC148137 /* Features/Result/Views/ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BEF2A0FE147F6B5F65B5E /* Features/Result/Views/ResultView.swift */; };
+		45A7DCDE7FD3431D95DF0FDC /* Features/Upload/ViewModels/UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84D9C65FFC40A8A4ECEE43 /* Features/Upload/ViewModels/UploadViewModel.swift */; };
+		67497E340B354F52A583768D /* Features/Upload/Views/VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B262CC334AA49DB89685F6A /* Features/Upload/Views/VideoPicker.swift */; };
+		294F25A43D8D4F35AF5DD5C7 /* MomentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FAABAAB1ED44A2A62BE160 /* MomentsApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FDCFDE56DC3948F0914164F0 /* MomentsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B78EFE8789C4EDAA6770C03 /* Core/Models/Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Models/Job.swift"; sourceTree = "<group>"; };
+		0FBDF8E51B5C45438AB3C31E /* Core/Models/VideoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Models/VideoConfig.swift"; sourceTree = "<group>"; };
+		887FE35A553049679A68C2FB /* Core/Services/APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/Services/APIClient.swift"; sourceTree = "<group>"; };
+		A334E2192D134D98A52C7107 /* Features/Home/Views/HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Home/Views/HomeView.swift"; sourceTree = "<group>"; };
+		104BEF2A0FE147F6B5F65B5E /* Features/Result/Views/ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Result/Views/ResultView.swift"; sourceTree = "<group>"; };
+		1F84D9C65FFC40A8A4ECEE43 /* Features/Upload/ViewModels/UploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Upload/ViewModels/UploadViewModel.swift"; sourceTree = "<group>"; };
+		8B262CC334AA49DB89685F6A /* Features/Upload/Views/VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Upload/Views/VideoPicker.swift"; sourceTree = "<group>"; };
+		C4FAABAAB1ED44A2A62BE160 /* MomentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MomentsApp.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		78346938A1AC4AC989797EFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AFD6DD95D3024C81A3B728E7 = {
+			isa = PBXGroup;
+			children = (
+				23919C94B26B427794F70BE8 /* Products */,
+				6B78EFE8789C4EDAA6770C03 /* Core/Models/Job.swift */,
+				0FBDF8E51B5C45438AB3C31E /* Core/Models/VideoConfig.swift */,
+				887FE35A553049679A68C2FB /* Core/Services/APIClient.swift */,
+				A334E2192D134D98A52C7107 /* Features/Home/Views/HomeView.swift */,
+				104BEF2A0FE147F6B5F65B5E /* Features/Result/Views/ResultView.swift */,
+				1F84D9C65FFC40A8A4ECEE43 /* Features/Upload/ViewModels/UploadViewModel.swift */,
+				8B262CC334AA49DB89685F6A /* Features/Upload/Views/VideoPicker.swift */,
+				C4FAABAAB1ED44A2A62BE160 /* MomentsApp.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		23919C94B26B427794F70BE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDCFDE56DC3948F0914164F0 /* MomentsApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9D10E0F2D654479A8A690F83 /* MomentsApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2178B1A4C9E048B494AD0E86 /* Build configuration list for PBXNativeTarget "MomentsApp" */;
+			buildPhases = (
+				BD736FAAB3CC4C2395E234DD /* Sources */,
+				78346938A1AC4AC989797EFF /* Frameworks */,
+				615769906D4A4ABABCD3815E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MomentsApp;
+			productName = MomentsApp;
+			productReference = FDCFDE56DC3948F0914164F0 /* MomentsApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CCFAEB409DE464AB20321BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					9D10E0F2D654479A8A690F83 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 2178B1A4C9E048B494AD0E86 /* Build configuration list for PBXProject "MomentsApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFD6DD95D3024C81A3B728E7;
+			productRefGroup = 23919C94B26B427794F70BE8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D10E0F2D654479A8A690F83 /* MomentsApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		615769906D4A4ABABCD3815E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BD736FAAB3CC4C2395E234DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9F9C6BB81AE42079DA0608C /* Core/Models/Job.swift in Sources */,
+				9B2A816DF75B403C89215177 /* Core/Models/VideoConfig.swift in Sources */,
+				EC8564F225D64D63B13B8CA9 /* Core/Services/APIClient.swift in Sources */,
+				054B3A9C722E4F2694233AB0 /* Features/Home/Views/HomeView.swift in Sources */,
+				2A74C2C480724166BC148137 /* Features/Result/Views/ResultView.swift in Sources */,
+				45A7DCDE7FD3431D95DF0FDC /* Features/Upload/ViewModels/UploadViewModel.swift in Sources */,
+				67497E340B354F52A583768D /* Features/Upload/Views/VideoPicker.swift in Sources */,
+				294F25A43D8D4F35AF5DD5C7 /* MomentsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C393398AC7E14335B274F8BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moments.MomentsApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		19FB5DC24C8E4EEB87B67901 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moments.MomentsApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2178B1A4C9E048B494AD0E86 /* Build configuration list for PBXNativeTarget "MomentsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C393398AC7E14335B274F8BE /* Debug */,
+				19FB5DC24C8E4EEB87B67901 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1CCFAEB409DE464AB20321BA /* Project object */;
+}
