@@ -12,12 +12,19 @@ import Observation
 class APIClient {
     static let shared = APIClient()
 
-    // Base URL - Mac's IP address for physical iPhone testing
-    // Your Mac IP: 192.168.0.5 (both iPhone and Mac must be on same WiFi)
-    // Change to Railway URL when deployed to production
-    private let baseURL = "http://192.168.0.5:8000"
+    // Base URL from environment configuration
+    // Automatically switches between development/staging/production
+    private let baseURL: String
+    private let timeout: TimeInterval
 
-    private init() {}
+    private init() {
+        self.baseURL = AppConfiguration.apiBaseURL
+        self.timeout = AppConfiguration.apiTimeout
+
+        Logger.info("🌐 APIClient initialized")
+        Logger.info("🌐 Base URL: \(baseURL)")
+        Logger.info("⏱️ Timeout: \(timeout)s")
+    }
 
     // MARK: - Upload Video
 
@@ -43,7 +50,7 @@ class APIClient {
         var request = URLRequest(url: URL(string: endpoint)!)
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        request.timeoutInterval = 300  // 5 minute timeout for large videos
+        request.timeoutInterval = self.timeout  // Configured timeout based on environment
 
         print("🌐 APIClient: Building multipart body...")
 

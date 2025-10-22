@@ -2,27 +2,59 @@
 Application configuration using Pydantic settings
 """
 from pydantic_settings import BaseSettings
-from pydantic import Field
-from typing import Optional
+from pydantic import Field, validator
+from typing import Optional, List
 import os
+import secrets
 from pathlib import Path
 
 class Settings(BaseSettings):
     """Application settings"""
 
+    # Environment
+    ENVIRONMENT: str = Field(default="development")  # development, staging, production
+
     # API Settings
     API_V1_PREFIX: str = "/api/v1"
     PROJECT_NAME: str = "Moments API"
     VERSION: str = "1.0.0"
-    DEBUG: bool = True
+    DEBUG: bool = Field(default=False)  # Default to False for safety
 
     # Server
     HOST: str = "0.0.0.0"
     PORT: int = 8000
 
     # Security
-    SECRET_KEY: str = Field(default="dev-secret-key-change-in-production")
+    SECRET_KEY: str = Field(default_factory=lambda: secrets.token_urlsafe(32))
+    API_KEY_HEADER: str = "X-API-Key"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
+
+    # CORS
+    ALLOWED_ORIGINS: List[str] = Field(default=["http://localhost:3000"])
+
+    # Sentry (Error Tracking)
+    SENTRY_DSN: Optional[str] = None
+    SENTRY_TRACES_SAMPLE_RATE: float = 1.0
+
+    # Rate Limiting
+    RATE_LIMIT_ENABLED: bool = True
+    RATE_LIMIT_PER_MINUTE: int = 10
+    RATE_LIMIT_PER_HOUR: int = 100
+
+    @validator("DEBUG", pre=True)
+    def set_debug_mode(cls, v, values):
+        """Ensure DEBUG is False in production"""
+        env = values.get("ENVIRONMENT", "development")
+        if env == "production":
+            return False
+        return v
+
+    @validator("ALLOWED_ORIGINS", pre=True)
+    def parse_cors_origins(cls, v):
+        """Parse CORS origins from string or list"""
+        if isinstance(v, str):
+            return [origin.strip() for origin in v.split(",")]
+        return v
 
     # Database
     DATABASE_URL: str = Field(default="sqlite+aiosqlite:///./moments.db")

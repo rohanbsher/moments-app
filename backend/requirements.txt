@@ -21,6 +21,9 @@ python-dotenv==1.0.0
 pydantic==2.5.0
 pydantic-settings==2.1.0
 
+# Error tracking and monitoring
+sentry-sdk[fastapi]==1.39.1
+
 # Video processing (reuse existing core)
 # Note: These are already installed in main project
 # numpy>=1.24.3,<2.0
