@@ -12,8 +12,10 @@ import Observation
 class APIClient {
     static let shared = APIClient()
 
-    // Base URL - using localhost for testing, will use Railway URL in production
-    private let baseURL = "http://localhost:8000"
+    // Base URL - Mac's IP address for physical iPhone testing
+    // Your Mac IP: 192.168.0.5 (both iPhone and Mac must be on same WiFi)
+    // Change to Railway URL when deployed to production
+    private let baseURL = "http://192.168.0.5:8000"
 
     private init() {}
 
@@ -32,11 +34,18 @@ class APIClient {
     ) async throws -> String {
         let endpoint = "\(baseURL)/api/v1/upload"
 
+        print("🌐 APIClient: Starting upload to: \(endpoint)")
+        print("🌐 APIClient: Video URL: \(videoURL)")
+        print("🌐 APIClient: Video file exists: \(FileManager.default.fileExists(atPath: videoURL.path))")
+
         // Create multipart form data
         let boundary = "Boundary-\(UUID().uuidString)"
         var request = URLRequest(url: URL(string: endpoint)!)
         request.httpMethod = "POST"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 300  // 5 minute timeout for large videos
+
+        print("🌐 APIClient: Building multipart body...")
 
         // Build multipart body
         let httpBody = try createMultipartBody(
@@ -45,6 +54,9 @@ class APIClient {
             boundary: boundary
         )
 
+        print("✅ APIClient: Multipart body created, size: \(httpBody.count) bytes")
+        print("🌐 APIClient: Starting upload with progress tracking...")
+
         // Upload with progress tracking
         let (data, response) = try await uploadWithProgress(
             request: request,
@@ -52,16 +64,41 @@ class APIClient {
             onProgress: onProgress
         )
 
+        print("✅ APIClient: Upload complete, checking response...")
+
         guard let httpResponse = response as? HTTPURLResponse else {
+            print("❌ APIClient: Invalid response type")
             throw APIError.invalidResponse
         }
 
+        print("🌐 APIClient: HTTP Status Code: \(httpResponse.statusCode)")
+
         guard httpResponse.statusCode == 200 else {
+            print("❌ APIClient: Server error with status code: \(httpResponse.statusCode)")
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("❌ APIClient: Response body: \(responseString)")
+            }
             throw APIError.serverError(statusCode: httpResponse.statusCode)
         }
 
-        let uploadResponse = try JSONDecoder().decode(UploadResponse.self, from: data)
-        return uploadResponse.jobId
+        print("✅ APIClient: Decoding response...")
+
+        // Log raw response for debugging
+        if let responseString = String(data: data, encoding: .utf8) {
+            print("📥 APIClient: Response body: \(responseString)")
+        }
+
+        do {
+            let uploadResponse = try JSONDecoder().decode(UploadResponse.self, from: data)
+            print("✅ APIClient: Upload successful! Job ID: \(uploadResponse.jobId)")
+            return uploadResponse.jobId
+        } catch {
+            print("❌ APIClient: Decoding failed: \(error)")
+            if let decodingError = error as? DecodingError {
+                print("❌ APIClient: Decoding error details: \(decodingError)")
+            }
+            throw APIError.decodingError(error)
+        }
     }
 
     // MARK: - Check Status
@@ -160,7 +197,7 @@ class APIClient {
         data: Data,
         onProgress: @escaping (Double) -> Void
     ) async throws -> (Data, URLResponse) {
-        var uploadRequest = request
+        let uploadRequest = request
 
         // Create upload task
         return try await withCheckedThrowingContinuation { continuation in

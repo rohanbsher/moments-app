@@ -21,6 +21,7 @@ class UploadViewModel {
     var isProcessing: Bool = false
     var jobId: String?
     var downloadedVideoURL: URL?
+    var detailedError: String = ""  // For debugging
 
     // Configuration
     var videoConfig = VideoConfig.standard
@@ -33,13 +34,22 @@ class UploadViewModel {
     /// Upload video and start processing
     /// - Parameter videoURL: Local URL of video to upload
     func uploadAndProcess(videoURL: URL) async {
+        print("📤 UploadViewModel: uploadAndProcess called with: \(videoURL)")
+
         // Reset state
         resetState()
+        print("📤 UploadViewModel: State reset complete")
 
         do {
             // Upload phase
-            isUploading = true
-            statusMessage = "Uploading video..."
+            print("📤 UploadViewModel: Starting upload phase...")
+
+            await MainActor.run {
+                self.isUploading = true
+                self.statusMessage = "Uploading video..."
+            }
+
+            print("📤 UploadViewModel: Calling APIClient.uploadVideo...")
 
             let uploadedJobId = try await APIClient.shared.uploadVideo(
                 videoURL: videoURL,
@@ -47,8 +57,11 @@ class UploadViewModel {
             ) { [weak self] progress in
                 Task { @MainActor in
                     self?.uploadProgress = progress
+                    print("📊 Upload progress: \(Int(progress * 100))%")
                 }
             }
+
+            print("✅ UploadViewModel: Upload complete! Job ID: \(uploadedJobId)")
 
             await MainActor.run {
                 self.jobId = uploadedJobId
@@ -57,15 +70,23 @@ class UploadViewModel {
                 self.statusMessage = "Processing video..."
             }
 
+            print("📤 UploadViewModel: Starting polling...")
+
             // Start polling for status
             startPolling(jobId: uploadedJobId)
 
         } catch {
+            print("❌ UploadViewModel: Upload failed with error: \(error)")
+            print("❌ Error description: \(error.localizedDescription)")
+
+            let detailedMsg = "Error: \(error)\nDescription: \(error.localizedDescription)"
+
             await MainActor.run {
                 self.errorMessage = error.localizedDescription
+                self.detailedError = detailedMsg
                 self.isUploading = false
                 self.isProcessing = false
-                self.statusMessage = "Upload failed"
+                self.statusMessage = "Upload failed: \(error.localizedDescription)"
             }
         }
     }

@@ -1,97 +1,38 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# Test outputs
+tests/test_results/*.mp4
+tests/test_results/*.json
 
-# Virtual environments
-venv/
-ENV/
-env/
-.venv
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environment variables
-.env
-.env.local
-.env.production
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-*.cover
-.hypothesis/
+# Backend storage
+backend/storage/uploads/*
+backend/storage/outputs/*
 
 # Database
 *.db
 *.sqlite
-*.sqlite3
-moments.db
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# iOS
+ios/DerivedData/
+ios/MomentsApp.xcodeproj/xcuserdata/
+ios/MomentsApp.xcodeproj/project.xcworkspace/
+.DS_Store
+
+# Test videos and outputs
+*.MOV
+*.mp4
+*.mov
+*_output*.mp4
+test_output_*
+test_*.mp4
+comprehensive_test_results.json
+
+# Environment
+.env
+.claude/settings.local.json
 
 # Logs
 *.log
-logs/
-*.log.*
-
-# Storage (videos) - Keep .gitkeep only
-backend/storage/uploads/*
-backend/storage/outputs/*
-!backend/storage/uploads/.gitkeep
-!backend/storage/outputs/.gitkeep
-
-# Temporary files
-*.tmp
-*.temp
-/tmp/
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Railway
-.railway/
-
-# Test videos - ignore ALL video files (too large for GitHub)
-*.mp4
-*.mov
-*.avi
-*.MP4
-*.MOV
-*.AVI
-
-# Keep only small sample videos if needed (none currently)
-# !small_sample.mp4
-
-# Claude Code
-.claude/

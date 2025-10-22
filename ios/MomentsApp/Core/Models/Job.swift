@@ -91,13 +91,13 @@ struct JobMetadata: Codable {
 
 struct UploadResponse: Codable {
     let jobId: String
-    let status: String
     let message: String
+    let estimatedTime: Int?
 
     enum CodingKeys: String, CodingKey {
         case jobId = "job_id"
-        case status
         case message
+        case estimatedTime = "estimated_time"
     }
 }
 
