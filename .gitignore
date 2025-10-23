@@ -18,8 +18,19 @@ __pycache__/
 # iOS
 ios/DerivedData/
 ios/MomentsApp.xcodeproj/xcuserdata/
-ios/MomentsApp.xcodeproj/project.xcworkspace/
+ios/MomentsApp.xcodeproj/project.xcworkspace/xcuserdata/
 .DS_Store
+
+# Xcode
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+xcuserdata/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
 
 # Test videos and outputs
 *.MOV
